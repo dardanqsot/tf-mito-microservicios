@@ -1,0 +1,28 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9000}
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dardanqsot/config-server-files.git
+          defaultLabel: dev
+          refreshRate: 10
+          cloneOnStart: true
+          forcePull: true
+        encrypt:
+          enabled: false
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka}
+
+encrypt:
+  key: dardan-secret
